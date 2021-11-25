@@ -1,0 +1,1 @@
+Description: This component handles all the database requests and works as a database controller for the rest of the systems components.
