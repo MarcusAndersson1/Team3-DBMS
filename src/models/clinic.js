@@ -14,4 +14,4 @@ var clinicSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('clinic', clinicSchema)
+module.exports = mongoose.model('Clinic', clinicSchema)
