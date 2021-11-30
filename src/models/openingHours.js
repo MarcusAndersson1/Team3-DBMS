@@ -11,4 +11,4 @@ var openingHoursSchema = new Schema({
     sunday: {type: String}
 });
 
-module.exports = mongoose.model('openingHours', openingHoursSchema);
+module.exports = mongoose.model('OpeningHours', openingHoursSchema);
