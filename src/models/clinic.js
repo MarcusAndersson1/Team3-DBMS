@@ -11,7 +11,9 @@ var clinicSchema = new Schema({
     coordinates: { 
         long: {type: String},
         lat: {type: String}
-    }
+    },
+    openingHours: {type: mongoose.Schema.Types.ObjectId,
+        ref: 'Timeslot'}
 })
 
 module.exports = mongoose.model('Clinic', clinicSchema)
