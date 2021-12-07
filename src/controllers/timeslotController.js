@@ -26,6 +26,11 @@ async function readTimeslot(){
         console.log(timeslots) 
 }
 
+async function deleteAllTimeslots(){
+    const timeslots = await Timeslot.deleteMany({})
+    console.log(timeslots)
+}
+
 async function updateTimeslot(id){
 
     const timeslot = await Timeslot.updateOne({_id: id}, { isAvailable: false })
