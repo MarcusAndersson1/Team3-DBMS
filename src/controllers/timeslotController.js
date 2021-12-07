@@ -7,7 +7,7 @@ var Timeslot = require('../models/Timeslot');
     const client =  mongoose.connection;
     client.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-async function createTimeslot(date){ 
+ var a = async function createTimeslot(date){ 
     var test = {
         dateTime: date,
         isAvailable : true
@@ -33,3 +33,4 @@ async function updateTimeslot(id){
     console.log(timeslot.acknowledged) 
 }
 
+module.exports = a;
