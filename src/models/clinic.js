@@ -13,7 +13,7 @@ var clinicSchema = new Schema({
         lat: {type: String}
     },
     openingHours: {type: mongoose.Schema.Types.ObjectId,
-        ref: 'Timeslot'}
+        ref: 'OpeningHours'}
 })
 
 module.exports = mongoose.model('Clinic', clinicSchema)

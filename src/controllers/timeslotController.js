@@ -38,4 +38,5 @@ async function updateTimeslot(id){
     console.log(timeslot.acknowledged) 
 }
 
+//deleteAllTimeslots()
 module.exports = a;
