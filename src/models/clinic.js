@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var clinicSchema = new Schema({
-    id: { type: String },
+    id: { type: String, unique: true },
     name: { type: String },
     owner: { type: String },
     dentists: { type: Number },
@@ -12,8 +12,12 @@ var clinicSchema = new Schema({
         long: {type: String},
         lat: {type: String}
     },
-    openingHours: {type: mongoose.Schema.Types.ObjectId,
-        ref: 'OpeningHours'}
-})
+    openingHours: {
+        monday: {type: String},
+        tuesday: {type: String},
+        wednesday: {type: String},
+        thursday: {type: String},
+        friday: {type: String},
+    }})
 
 module.exports = mongoose.model('Clinic', clinicSchema)

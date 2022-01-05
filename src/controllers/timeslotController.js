@@ -7,10 +7,12 @@ var Timeslot = require('../models/Timeslot');
     const client =  mongoose.connection;
     client.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
- var a = async function createTimeslot(date){ 
+ var a = async function createTimeslot(date, clinic){ 
     var test = {
         dateTime: date,
-        isAvailable : true
+        isAvailable : true,
+        user: null,
+        clinic: clinic
     }
     let timeslot = await new Timeslot(test)
         timeslot.save(function(err, timeslot){
@@ -20,6 +22,23 @@ var Timeslot = require('../models/Timeslot');
             console.log(timeslot)
         }
 })}
+
+function createTimeslot(date, clinic){ 
+    var test = {
+        dateTime: date,
+        isAvailable : true,
+        user: null,
+        clinic: clinic
+    }
+    let timeslot = new Timeslot(test)
+        timeslot.save(function(err, timeslot){
+        if(err){
+            console.log(err)
+        }else{
+            console.log(timeslot)
+        }
+})}
+
 
 async function readTimeslot(){
         const timeslots = await Timeslot.find({})
@@ -38,5 +57,5 @@ async function updateTimeslot(id){
     console.log(timeslot.acknowledged) 
 }
 
-//deleteAllTimeslots()
+//createTimeslot("2020", '61d5f712d62e979a1e44cb57')
 module.exports = a;
