@@ -1,18 +1,20 @@
 var mongoose = require('mongoose');
 const mongoDB = 'mongodb+srv://Felix:Mertala10@oralfixation.izcni.mongodb.net/OralFixation?retryWrites=true&w=majority';
 var Timeslot = require('../models/Timeslot');
+var clinicId = require('../controllers/clinicController')
  mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true})
     .then((result) => console.log ('connect to DB'))
     .catch((err) => console.log(err))
     const client =  mongoose.connection;
     client.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
- var a = async function createTimeslot(date, clinic){ 
+ var a = async function createTimeslot(date){ 
+     console.log("this is: "+ clinicId.clinicId)
     var test = {
         dateTime: date,
         isAvailable : true,
         user: null,
-        clinic: clinic
+        clinic: clinicId.clinicId
     }
     let timeslot = await new Timeslot(test)
         timeslot.save(function(err, timeslot){
