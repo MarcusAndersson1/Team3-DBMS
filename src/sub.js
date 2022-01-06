@@ -13,10 +13,14 @@ client.subscribe('Clinic')
         client.on('message', function (topic,message){
             if (topic === 'Clinic') {
                 var obj = JSON.parse(message) 
-                clinic.a(obj);
+                var hasArrived = clinic.a(obj);
+                if(hasArrived) {
+                    client.publish("Clinic/true", "Create Clinic")
+                }
+                console.log(hasArrived)
               }else if (topic === 'Timeslot') {
                 console.log(message.toString())
-            timeslot(message);
+            timeslot.a(message);
               }
             
               
