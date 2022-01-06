@@ -42,9 +42,9 @@ function createTimeslot(date, clinic){
 })}
 
 
-async function readTimeslot(){
+var b = async function readTimeslot(){
         const timeslots = await Timeslot.find({})
-        console.log(timeslots) 
+        return timeslots 
 }
 
 async function deleteAllTimeslots(){
@@ -60,4 +60,4 @@ async function updateTimeslot(id){
 }
 
 //createTimeslot("2020", '61d5f712d62e979a1e44cb57')
-module.exports = a;
+module.exports = {a, b};
