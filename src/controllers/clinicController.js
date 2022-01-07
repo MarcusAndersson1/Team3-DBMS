@@ -23,4 +23,13 @@ client.on('error', console.error.bind(console, 'MongoDB connection error:'));
         return clinics 
 }
 
-module.exports = {a,b};
+var c = async function updateTimeslot(clinicId, timeslotId){
+
+    const timeslot = await Clinic.updateOne({_id:clinicId,timeslots:{'$elemMatch':{_id:timeslotId}}}, { '$set': { 'timeslots.$.isAvailable': false }})
+    console.log(timeslot.modifiedCount) 
+    console.log(timeslot.acknowledged) 
+}
+
+
+
+module.exports = {a,b, c};

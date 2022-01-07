@@ -10,6 +10,7 @@ function requestListener(){
 
 function bookingListener(){
     client.subscribe('/timeslots/book/')
+    
 }
 
 client.on('message', async function (topic, message) {
@@ -23,7 +24,7 @@ client.on('message', async function (topic, message) {
         client.publish('/timeslots/all/', JSON.stringify(information))
     }
     if (topic === '/timeslots/book/'){
-        let successful = await bokaTid(message.toString())
+        let successful = await bokaTid(message.clinicId.toString(),message.timeslotId.toString(),)
         if(successful){
             client.publish('/timeslots/book/'+message.toString(), "200")
         }else{client.publish('/timeslots/book/'+message.toString(), "400")}
@@ -33,8 +34,8 @@ client.on('message', async function (topic, message) {
 
 
 
-async function bokaTid(id){
-
+async function bokaTid(clinicId, timeslotId){
+clinic.c(clinicId,timeslotId)
 }
 
 requestListener()
