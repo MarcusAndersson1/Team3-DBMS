@@ -18,6 +18,11 @@ var clinicSchema = new Schema({
         wednesday: {type: String},
         thursday: {type: String},
         friday: {type: String},
-    }})
+    },
+    timeslots:[{dateTime: {type: String},
+        isAvailable : {type: Boolean},
+        user: {type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'}}]}
+    )
 
 module.exports = mongoose.model('Clinic', clinicSchema)

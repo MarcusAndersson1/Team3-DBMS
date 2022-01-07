@@ -24,4 +24,9 @@ var clinicId = "61d5f712d62e979a1e44cb57";
             }
     })}
 
-module.exports = {a};
+    var b = async function readTimeslot(){
+        const clinics = await Clinic.find({})
+        return clinics 
+}
+
+module.exports = {a,b};
