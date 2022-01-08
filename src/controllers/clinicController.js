@@ -24,12 +24,21 @@ client.on('error', console.error.bind(console, 'MongoDB connection error:'));
 }
 
 var c = async function updateTimeslot(clinicId, timeslotId){
-
+    
     const timeslot = await Clinic.updateOne({_id:clinicId,timeslots:{'$elemMatch':{_id:timeslotId}}}, { '$set': { 'timeslots.$.isAvailable': false }})
     console.log(timeslot.modifiedCount) 
-    console.log(timeslot.acknowledged) 
+    console.log(timeslot.matchedCount)
+    
+    if(timeslot.matchedCount === 0){
+        return "404"
+    }else if(timeslot.modifiedCount === 0){
+        return "403"
+    }else{
+        return "200"
+    }
+  
 }
 
 
 
-module.exports = {a,b, c};
+module.exports = {a,b,c};

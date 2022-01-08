@@ -1,38 +1,36 @@
 var mqtt = require('mqtt')
-var client  = mqtt.connect('tcp://127.0.0.1:1883') 
-var timeslot = require('./controllers/timeslotController')
+var client = mqtt.connect('tcp://127.0.0.1:1883')
 var clinic = require('./controllers/clinicController')
 
-function requestListener(){
-    client.subscribe('/timeslots/request/all/')
-    console.log("listening")
-}
-
-function bookingListener(){
-    client.subscribe('/timeslots/book/')
-    
-}
-
+client.subscribe('/timeslots/request/all/')
+client.subscribe('/timeslots/book/')
+client.on('connect', function(){
+    console.log('Client has subscribed successfully')
+})
 client.on('message', async function (topic, message) {
-    if (topic === '/timeslots/request/all/'){
+    if (topic === '/timeslots/request/all/') {
         console.log('hej hej')
         let utter = "🦦"
         utter = await clinic.b()
         client.publish('/timeslots/all/', JSON.stringify(utter))
     }
-    if (topic === '/timeslots/book/'){
-        let successful = await bokaTid(message.clinicId.toString(),message.timeslotId.toString(),)
-        if(successful){
-            client.publish('/timeslots/book/'+message.toString(), "200")
-        }else{client.publish('/timeslots/book/'+message.toString(), "400")}
+    if (topic === '/timeslots/book/') {
+    console.log(message.toString())
+        const messageArray = message.toString().split(" ")
+        clinic.c(messageArray[0], messageArray[1])
+            .then(x => {
+                console.log(x)
+                if (x == "404") {
+                    client.publish('/timeslots/book/response', '404')
+                } else if (x == "403") {
+                    console.log(x)
+                    client.publish('/timeslots/book/response', '403')
+                } else if (x == "200") {
+                    console.log(x)
+                    client.publish('/timeslots/book/response', '200')
+                }
+            })
     }
 
-})
-
-
-
-async function bokaTid(clinicId, timeslotId){
-clinic.c(clinicId,timeslotId)
 }
-
-requestListener()
+)
