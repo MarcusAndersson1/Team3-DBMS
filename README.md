@@ -7,6 +7,6 @@ Into the terminal, type the following:
 2. `cd src`
 3. Choose:
 
- `node sub.js` if you want to handle timeslots
+    `node sub.js` if you want to handle timeslots
  
- `node bookingSub.js` if you want to handle bookings
+    `node bookingSub.js` if you want to handle bookings
