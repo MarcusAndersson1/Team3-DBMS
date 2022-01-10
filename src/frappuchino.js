@@ -29,7 +29,7 @@ client.on('message', async function (topic, message) {
                     console.log(x)
                     client.publish('/timeslots/book/response', '200')
                 }
-            })
+            }).catch((err) => console.log(err))
     }
 
 }
