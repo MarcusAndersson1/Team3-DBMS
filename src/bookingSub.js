@@ -3,7 +3,7 @@ var client = mqtt.connect('tcp://127.0.0.1:1883')
 var clinic = require('./controllers/clinicController')
 
 client.subscribe('/timeslots/request/all/')
-client.subscribe('/timeslots/book/')
+client.subscribe('/timeslots/book/', {qos : 1})
 client.on('connect', function(){
     console.log('Client has subscribed successfully')
 })
