@@ -9,7 +9,6 @@ client.on('connect', function(){
 })
 client.on('message', async function (topic, message) {
     if (topic === '/timeslots/request/all/') {
-        console.log('hej hej')
         let utter = "🦦"
         utter = await clinic.b()
         client.publish('/timeslots/all/', JSON.stringify(utter))
