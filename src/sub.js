@@ -4,7 +4,7 @@ const mqtt = require('mqtt')
 var client = mqtt.connect('mqtt://broker.hivemq.com')
 
 
-client.subscribe('Timeslot')
+
 client.subscribe('Clinic')
 
     client.on('connect', function(){
@@ -15,13 +15,7 @@ client.subscribe('Clinic')
                 var obj = JSON.parse(message) 
                 console.log(obj.clinic)
                 clinic.a(obj);
-              }else if (topic === 'Timeslot') {
-                console.log(message.toString())
-            timeslot.a(message);
               }
-            
-              
-            
         })
   
     
