@@ -1,10 +1,9 @@
-const timeslot = require('./controllers/timeslotController')
 const clinic = require('./controllers/clinicController')
 const mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://broker.hivemq.com')
+var client = mqtt.connect('tcp://127.0.0.1:1883')
 
 
-
+client.subscribe('Timeslot')
 client.subscribe('Clinic')
 
     client.on('connect', function(){
